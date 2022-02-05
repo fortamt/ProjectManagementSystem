@@ -2,7 +2,7 @@ package ua.goit.dl;
 
 public interface Repository<T> {
 
-
+    T findById(Integer id);
 
     void create(T t);
 
