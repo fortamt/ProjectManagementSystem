@@ -2,10 +2,10 @@ package ua.goit.model.dto;
 
 public class CompaniesProjectsRelationDto {
 
-    private String companyId;
-    private String projectId;
+    private Integer companyId;
+    private Integer projectId;
 
-    public CompaniesProjectsRelationDto(String companyId, String projectId) {
+    public CompaniesProjectsRelationDto(Integer companyId, Integer projectId) {
         this.companyId = companyId;
         this.projectId = projectId;
     }
@@ -13,19 +13,19 @@ public class CompaniesProjectsRelationDto {
     public CompaniesProjectsRelationDto() {
     }
 
-    public String getCompanyId() {
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(String companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
-    public String getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 }

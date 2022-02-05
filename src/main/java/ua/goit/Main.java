@@ -28,7 +28,9 @@ public class Main {
 
         CompaniesDto companiesDto = companiesService.findById(1);
 
-
+        System.out.println(companiesDto.getCompanyId());
+        System.out.println(companiesDto.getCompanyName());
+        System.out.println(companiesDto.getCompanyAddress());
 
     }
 }

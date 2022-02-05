@@ -1,6 +1,5 @@
 package ua.goit.model.converter;
 
-import ua.goit.dl.CompaniesRepository;
 import ua.goit.model.dao.CompaniesDao;
 import ua.goit.model.dto.CompaniesDto;
 
