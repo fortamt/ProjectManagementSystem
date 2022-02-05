@@ -54,7 +54,7 @@ public class CompaniesRepository implements Repository<CompaniesDao>{
 
     @Override
     public void delete(CompaniesDao companiesDao) {
-        CompaniesDao existJob = findById(companiesDao.getCompanyId());
+        findById(companiesDao.getCompanyId());
         try(Connection connection = connector.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)){
             preparedStatement.setInt(1, companiesDao.getCompanyId());

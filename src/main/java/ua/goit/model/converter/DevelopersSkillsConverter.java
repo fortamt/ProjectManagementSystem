@@ -1,8 +1,6 @@
 package ua.goit.model.converter;
 
-import ua.goit.model.dao.DevelopersProjectsRelationDao;
 import ua.goit.model.dao.DevelopersSkillsRelationDao;
-import ua.goit.model.dto.DevelopersProjectsRelationDto;
 import ua.goit.model.dto.DevelopersSkillsRelationDto;
 
 public class DevelopersSkillsConverter {

@@ -1,7 +1,6 @@
 package ua.goit.model.converter;
 
 import ua.goit.model.dao.CustomersDao;
-import ua.goit.model.dto.CompaniesDto;
 import ua.goit.model.dto.CustomersDto;
 
 public class CustomersConverter {

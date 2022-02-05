@@ -5,8 +5,6 @@ import ua.goit.model.converter.CompaniesConverter;
 import ua.goit.model.dao.CompaniesDao;
 import ua.goit.model.dto.CompaniesDto;
 
-import java.util.Objects;
-
 public class CompaniesService {
 
     private final CompaniesConverter converter;
