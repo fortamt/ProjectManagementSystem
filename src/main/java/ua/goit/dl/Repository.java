@@ -6,7 +6,7 @@ public interface Repository<T> {
 
     void create(T t);
 
-    void remove(T t);
+    void delete(T t);
 
     int update(T t);
 

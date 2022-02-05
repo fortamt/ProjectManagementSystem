@@ -26,11 +26,14 @@ public class Main {
 
         CompaniesService companiesService = new CompaniesService(companiesConverter, repository);
 
-        CompaniesDto companiesDto = companiesService.findById(1);
+        CompaniesDto companiesDto = new CompaniesDto();
+        companiesDto.setCompanyId(5);
+        companiesDto.setCompanyName("Bershka");
+        companiesDto.setCompanyAddress("Worldwide");
 
-        System.out.println(companiesDto.getCompanyId());
-        System.out.println(companiesDto.getCompanyName());
-        System.out.println(companiesDto.getCompanyAddress());
+//        companiesService.update(companiesDto);
+//        companiesService.create(companiesDto);
+//        companiesService.delete(companiesDto);
 
     }
 }

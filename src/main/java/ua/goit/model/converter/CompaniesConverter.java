@@ -3,7 +3,7 @@ package ua.goit.model.converter;
 import ua.goit.model.dao.CompaniesDao;
 import ua.goit.model.dto.CompaniesDto;
 
-public class CompaniesConverter {
+public class CompaniesConverter{
 
     public CompaniesDao convert(CompaniesDto companiesDto){
         CompaniesDao dao = new CompaniesDao();
