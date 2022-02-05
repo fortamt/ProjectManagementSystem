@@ -4,11 +4,16 @@ import ua.goit.config.DatabaseManager;
 import ua.goit.config.PostgresHikariProvider;
 import ua.goit.config.PropertiesUtil;
 import ua.goit.dl.CustomersRepository;
+import ua.goit.dl.DevelopersRepository;
 import ua.goit.dl.Repository;
 import ua.goit.model.converter.CustomersConverter;
+import ua.goit.model.converter.DevelopersConverter;
 import ua.goit.model.dao.CustomersDao;
+import ua.goit.model.dao.DevelopersDao;
 import ua.goit.model.dto.CustomersDto;
+import ua.goit.model.dto.DevelopersDto;
 import ua.goit.service.CustomersService;
+import ua.goit.service.DevelopersService;
 
 
 public class Main {
@@ -19,20 +24,22 @@ public class Main {
         DatabaseManager dbConnector = new PostgresHikariProvider(util.getHostname(), util.getPort(), util.getSchema(),
                 util.getUser(), util.getPassword());
 
-        Repository<CustomersDao> repository = new CustomersRepository(dbConnector);
+        Repository<DevelopersDao> repository = new DevelopersRepository(dbConnector);
 
-        CustomersConverter customersConverter = new CustomersConverter();
+        DevelopersConverter developersConverter = new DevelopersConverter();
 
-        CustomersService customersService = new CustomersService(customersConverter, repository);
+        DevelopersService developersService = new DevelopersService(developersConverter, repository);
 
-        CustomersDto customersDto = new CustomersDto();
-        customersDto.setCustomerId(5);
-        customersDto.setCustomerName("Artem");
-        customersDto.setCustomerPhone("+380509982992");
+        DevelopersDto developersDto = new DevelopersDto();
+        developersDto.setDeveloperId(11);
+        developersDto.setDeveloperName("Kirill");
+        developersDto.setDeveloperAge(26);
+        developersDto.setDeveloperSex("F");
+        developersDto.setSalary(500);
 
-//        customersService.update(customersDto);
-//        customersService.create(customersDto);
-//        customersService.delete(customersDto);
+//        developersService.update(developersDto);
+//        developersService.create(developersDto);
+//        developersService.delete(developersDto);
 
     }
 }

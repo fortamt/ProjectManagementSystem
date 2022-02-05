@@ -62,7 +62,6 @@ public class CompaniesRepository implements Repository<CompaniesDao>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
