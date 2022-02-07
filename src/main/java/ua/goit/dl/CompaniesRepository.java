@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CompaniesRepository implements Repository<CompaniesDao>{
@@ -37,18 +36,20 @@ public class CompaniesRepository implements Repository<CompaniesDao>{
 
     @Override
     public void create(CompaniesDao companiesDao) {
-        CompaniesDao existCompany = check(companiesDao.getCompanyId());
-        if(Objects.nonNull(existCompany)){
-            throw new IllegalArgumentException(String.format("Company with id %d already exists", companiesDao.getCompanyId()));
-        }
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
-            preparedStatement.setInt(1, companiesDao.getCompanyId());
-            preparedStatement.setString(2, companiesDao.getCompanyName());
-            preparedStatement.setString(3, companiesDao.getCompanyAddress());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try{
+            CompaniesDao exist = findById(companiesDao.getCompanyId());
+            System.out.println(String.format("Company with %d already exist", exist.getCompanyId()));
+        } catch (IllegalArgumentException e){
+            try(Connection connection = connector.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
+                preparedStatement.setInt(1, companiesDao.getCompanyId());
+                preparedStatement.setString(2, companiesDao.getCompanyName());
+                preparedStatement.setString(3, companiesDao.getCompanyAddress());
+                preparedStatement.execute();
+            }
+            catch (SQLException eq) {
+                eq.printStackTrace();
+            }
         }
     }
 
@@ -89,18 +90,4 @@ public class CompaniesRepository implements Repository<CompaniesDao>{
         }
         return Optional.ofNullable(companiesDao);
     }
-
-    private CompaniesDao check(Integer id) {
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return mapToCompaniesDao(resultSet).orElse(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
 }

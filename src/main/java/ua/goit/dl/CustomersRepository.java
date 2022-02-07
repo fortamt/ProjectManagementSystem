@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomersRepository implements Repository<CustomersDao>{
@@ -37,18 +36,20 @@ public class CustomersRepository implements Repository<CustomersDao>{
 
     @Override
     public void create(CustomersDao customersDao) {
-        CustomersDao existCustomer = check(customersDao.getCustomerId());
-        if(Objects.nonNull(existCustomer)){
-            throw new IllegalArgumentException(String.format("Customer with id %d already exists", customersDao.getCustomerId()));
-        }
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
-            preparedStatement.setInt(1, customersDao.getCustomerId());
-            preparedStatement.setString(2, customersDao.getCustomerName());
-            preparedStatement.setString(3, customersDao.getCustomerPhone());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try{
+            CustomersDao exist = findById(customersDao.getCustomerId());
+            System.out.println(String.format("Customer with %d already exist", exist.getCustomerId()));
+        } catch (IllegalArgumentException e){
+            try(Connection connection = connector.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
+                preparedStatement.setInt(1, customersDao.getCustomerId());
+                preparedStatement.setString(2, customersDao.getCustomerName());
+                preparedStatement.setString(3, customersDao.getCustomerPhone());
+                preparedStatement.execute();
+            }
+            catch (SQLException eq) {
+                eq.printStackTrace();
+            }
         }
     }
 
@@ -91,18 +92,4 @@ public class CustomersRepository implements Repository<CustomersDao>{
         }
         return Optional.ofNullable(customersDao);
     }
-
-    private CustomersDao check(Integer id) {
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return mapToCustomersDao(resultSet).orElse(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
 }

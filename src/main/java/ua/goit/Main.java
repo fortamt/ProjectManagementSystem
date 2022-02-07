@@ -3,18 +3,12 @@ package ua.goit;
 import ua.goit.config.DatabaseManager;
 import ua.goit.config.PostgresHikariProvider;
 import ua.goit.config.PropertiesUtil;
-import ua.goit.dl.CustomersRepository;
-import ua.goit.dl.DevelopersRepository;
 import ua.goit.dl.Repository;
-import ua.goit.model.converter.CustomersConverter;
-import ua.goit.model.converter.DevelopersConverter;
-import ua.goit.model.dao.CustomersDao;
-import ua.goit.model.dao.DevelopersDao;
-import ua.goit.model.dto.CustomersDto;
-import ua.goit.model.dto.DevelopersDto;
-import ua.goit.service.CustomersService;
-import ua.goit.service.DevelopersService;
-
+import ua.goit.dl.SkillsRepository;
+import ua.goit.model.converter.SkillsConverter;
+import ua.goit.model.dao.SkillsDao;
+import ua.goit.model.dto.SkillsDto;
+import ua.goit.service.SkillsService;
 
 public class Main {
     public static void main(String[] args){
@@ -24,22 +18,19 @@ public class Main {
         DatabaseManager dbConnector = new PostgresHikariProvider(util.getHostname(), util.getPort(), util.getSchema(),
                 util.getUser(), util.getPassword());
 
-        Repository<DevelopersDao> repository = new DevelopersRepository(dbConnector);
+        Repository<SkillsDao> repository = new SkillsRepository(dbConnector);
 
-        DevelopersConverter developersConverter = new DevelopersConverter();
+        SkillsConverter skillsConverter = new SkillsConverter();
 
-        DevelopersService developersService = new DevelopersService(developersConverter, repository);
+        SkillsService skillsService = new SkillsService(skillsConverter, repository);
 
-        DevelopersDto developersDto = new DevelopersDto();
-        developersDto.setDeveloperId(11);
-        developersDto.setDeveloperName("Kirill");
-        developersDto.setDeveloperAge(26);
-        developersDto.setDeveloperSex("F");
-        developersDto.setSalary(500);
+        SkillsDto dto = new SkillsDto();
+        dto.setSkillId(13);
+        dto.setLanguage("None");
+        dto.setSkillLevel("Pro");
 
-//        developersService.update(developersDto);
-//        developersService.create(developersDto);
-//        developersService.delete(developersDto);
+        skillsService.delete(dto);
+
 
     }
 }

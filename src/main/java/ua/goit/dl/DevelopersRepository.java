@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DevelopersRepository implements Repository<DevelopersDao>{
@@ -37,20 +36,22 @@ public class DevelopersRepository implements Repository<DevelopersDao>{
 
     @Override
     public void create(DevelopersDao developersDao) {
-        DevelopersDao existDeveloper = check(developersDao.getDeveloperId());
-        if(Objects.nonNull(existDeveloper)){
-            throw new IllegalArgumentException(String.format("Developer with id %d already exists", developersDao.getDeveloperId()));
-        }
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
-            preparedStatement.setInt(1, developersDao.getDeveloperId());
-            preparedStatement.setString(2, developersDao.getDeveloperName());
-            preparedStatement.setInt(3, developersDao.getDeveloperAge());
-            preparedStatement.setString(4, developersDao.getDeveloperSex());
-            preparedStatement.setInt(5, developersDao.getSalary());
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try{
+            DevelopersDao exist = findById(developersDao.getDeveloperId());
+            System.out.println(String.format("Developer with %d already exist", exist.getDeveloperId()));
+        } catch (IllegalArgumentException e){
+            try(Connection connection = connector.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT)){
+                preparedStatement.setInt(1, developersDao.getDeveloperId());
+                preparedStatement.setString(2, developersDao.getDeveloperName());
+                preparedStatement.setInt(3, developersDao.getDeveloperAge());
+                preparedStatement.setString(4, developersDao.getDeveloperSex());
+                preparedStatement.setInt(5, developersDao.getSalary());
+                preparedStatement.execute();
+            }
+            catch (SQLException eq) {
+                eq.printStackTrace();
+            }
         }
     }
 
@@ -94,17 +95,5 @@ public class DevelopersRepository implements Repository<DevelopersDao>{
             developersDao.setSalary(resultSet.getInt("salary"));
         }
         return Optional.ofNullable(developersDao);
-    }
-
-    private DevelopersDao check(Integer id) {
-        try(Connection connection = connector.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return mapToDevelopersDao(resultSet).orElse(null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }
