@@ -18,7 +18,9 @@ public class SelectQueries {
     private static final String DEVELOPERS_LIST = "SELECT developer_name developer FROM developers d " +
             "JOIN developers_projects_relation dpr ON d.developer_id = dpr.developer_id " +
             "JOIN projects p ON p.project_id = dpr.project_id WHERE p.project_id = ?";
-    private static final String JAVA_DEVELOPERS_LIST = "SELECT developer_name developer FROM developers d JOIN developers_skills_relation dpr ON d.developer_id = dpr.developer_id JOIN skills s ON s.skill_id = dpr.skill_id WHERE s.language = '?'";
+    private static final String JAVA_DEVELOPERS_LIST = "SELECT developer_name developer FROM developers d " +
+            "JOIN developers_skills_relation dpr ON d.developer_id = dpr.developer_id " +
+            "JOIN skills s ON s.skill_id = dpr.skill_id WHERE s.language = '?'";
 
     public SelectQueries(DatabaseManager connector) {
         this.connector = connector;
