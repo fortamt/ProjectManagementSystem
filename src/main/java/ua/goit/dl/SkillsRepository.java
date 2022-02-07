@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class SkillsRepository implements Repository<SkillsDao>{
 
-    DatabaseManager connector;
+    private final DatabaseManager connector;
     private static final String FIND_BY_ID = "SELECT * FROM skills s WHERE s.skill_id = ? ;";
     private static final String INSERT = "INSERT INTO skills (skill_id, language, skill_lvl) VALUES (?, ?, ?)";
     private static final String DELETE_BY_ID = "DELETE FROM skills WHERE skill_id = ?";

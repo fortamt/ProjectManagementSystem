@@ -3,12 +3,7 @@ package ua.goit;
 import ua.goit.config.DatabaseManager;
 import ua.goit.config.PostgresHikariProvider;
 import ua.goit.config.PropertiesUtil;
-import ua.goit.dl.Repository;
-import ua.goit.dl.SkillsRepository;
-import ua.goit.model.converter.SkillsConverter;
-import ua.goit.model.dao.SkillsDao;
-import ua.goit.model.dto.SkillsDto;
-import ua.goit.service.SkillsService;
+import ua.goit.config.Queries.SelectQueries;
 
 public class Main {
     public static void main(String[] args){
@@ -18,19 +13,12 @@ public class Main {
         DatabaseManager dbConnector = new PostgresHikariProvider(util.getHostname(), util.getPort(), util.getSchema(),
                 util.getUser(), util.getPassword());
 
-        Repository<SkillsDao> repository = new SkillsRepository(dbConnector);
+        SelectQueries selectQueries = new SelectQueries(dbConnector);
 
-        SkillsConverter skillsConverter = new SkillsConverter();
+//        System.out.println(selectQueries.separatedProjectSalary(3));
 
-        SkillsService skillsService = new SkillsService(skillsConverter, repository);
+//        System.out.println(selectQueries.listOfDevelopersByProject(1));
 
-        SkillsDto dto = new SkillsDto();
-        dto.setSkillId(13);
-        dto.setLanguage("None");
-        dto.setSkillLevel("Pro");
-
-        skillsService.delete(dto);
-
-
+        System.out.println(selectQueries.listOfDevelopersByLanguage("Java"));
     }
 }
