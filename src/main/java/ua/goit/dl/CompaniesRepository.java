@@ -12,10 +12,10 @@ import java.util.Optional;
 public class CompaniesRepository implements Repository<CompaniesDao>{
 
     private final DatabaseManager connector;
-    private static final String FIND_BY_ID = "SELECT * FROM companies c WHERE c.company_id = ? ;";
-    private static final String INSERT = "INSERT INTO companies (company_id, company_name, company_address) VALUES (?, ?, ?)";
-    private static final String DELETE_BY_ID = "DELETE FROM companies WHERE company_id = ?";
-    private static final String UPDATE = "UPDATE companies SET company_name = ? , company_address = ? WHERE company_id = ?";
+    private static final String FIND_BY_ID = "SELECT * FROM companies c WHERE c.id = ? ;";
+    private static final String INSERT = "INSERT INTO companies (id, company_name, company_address) VALUES (?, ?, ?)";
+    private static final String DELETE_BY_ID = "DELETE FROM companies WHERE id = ?";
+    private static final String UPDATE = "UPDATE companies SET company_name = ? , company_address = ? WHERE id = ?";
 
     public CompaniesRepository(DatabaseManager connector) {
         this.connector = connector;

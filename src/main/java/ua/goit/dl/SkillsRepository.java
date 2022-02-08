@@ -12,10 +12,10 @@ import java.util.Optional;
 public class SkillsRepository implements Repository<SkillsDao>{
 
     private final DatabaseManager connector;
-    private static final String FIND_BY_ID = "SELECT * FROM skills s WHERE s.skill_id = ? ;";
-    private static final String INSERT = "INSERT INTO skills (skill_id, language, skill_lvl) VALUES (?, ?, ?)";
-    private static final String DELETE_BY_ID = "DELETE FROM skills WHERE skill_id = ?";
-    private static final String UPDATE = "UPDATE skills SET language = ? , skill_lvl = ? WHERE skill_id = ?";
+    private static final String FIND_BY_ID = "SELECT * FROM skills s WHERE s.id = ? ;";
+    private static final String INSERT = "INSERT INTO skills (id, language, skill_lvl) VALUES (?, ?, ?)";
+    private static final String DELETE_BY_ID = "DELETE FROM skills WHERE id = ?";
+    private static final String UPDATE = "UPDATE skills SET language = ? , skill_lvl = ? WHERE id = ?";
 
     public SkillsRepository(DatabaseManager connector) {
         this.connector = connector;

@@ -9,10 +9,10 @@ import java.util.Optional;
 public class ProjectsRepository implements Repository<ProjectsDao>{
 
     private final DatabaseManager connector;
-    private static final String FIND_BY_ID = "SELECT * FROM projects p WHERE p.project_id = ? ;";
-    private static final String INSERT = "INSERT INTO projects (project_id, project_name, project_start_date, cost) VALUES (?, ?, ?, ?)";
-    private static final String DELETE_BY_ID = "DELETE FROM projects WHERE project_id = ?";
-    private static final String UPDATE = "UPDATE projects SET project_name = ? , project_start_date = ? , cost = ? WHERE project_id = ?";
+    private static final String FIND_BY_ID = "SELECT * FROM projects p WHERE p.id = ? ;";
+    private static final String INSERT = "INSERT INTO projects (id, project_name, project_start_date, cost) VALUES (?, ?, ?, ?)";
+    private static final String DELETE_BY_ID = "DELETE FROM projects WHERE id = ?";
+    private static final String UPDATE = "UPDATE projects SET project_name = ? , project_start_date = ? , cost = ? WHERE id = ?";
 
     public ProjectsRepository(DatabaseManager connector) {
         this.connector = connector;

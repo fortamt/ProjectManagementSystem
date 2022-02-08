@@ -15,10 +15,16 @@ public class Main {
 
         SelectQueries selectQueries = new SelectQueries(dbConnector);
 
-//        System.out.println(selectQueries.separatedProjectSalary(3));
+//        System.out.println(selectQueries.separatedProjectSalary(3));           //зп одного проекта
+//
+//        System.out.println(selectQueries.listOfDevelopersByProject(1));        //список разработчиков на проекте
+//
+//        System.out.println(selectQueries.listOfDevelopersByLanguage("Java"));          //разработчики по языкам
+//
+//        System.out.println(selectQueries.listOfDevelopersBySkill("Middle"));    //разработчики по скилу
 
-//        System.out.println(selectQueries.listOfDevelopersByProject(1));
+        System.out.println(selectQueries.listInfOfProjects());
 
-        System.out.println(selectQueries.listOfDevelopersByLanguage("Java"));
+
     }
 }

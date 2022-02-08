@@ -12,10 +12,10 @@ import java.util.Optional;
 public class CustomersRepository implements Repository<CustomersDao>{
 
     private final DatabaseManager connector;
-    private static final String FIND_BY_ID = "SELECT * FROM customers c WHERE c.customer_id = ? ;";
-    private static final String INSERT = "INSERT INTO customers (customer_id, customer_name, customer_phone) VALUES (?, ?, ?)";
-    private static final String DELETE_BY_ID = "DELETE FROM customers WHERE customer_id = ?";
-    private static final String UPDATE = "UPDATE customers SET customer_name = ? , customer_phone = ? WHERE customer_id = ?";
+    private static final String FIND_BY_ID = "SELECT * FROM customers c WHERE c.id = ? ;";
+    private static final String INSERT = "INSERT INTO customers (id, customer_name, customer_phone) VALUES (?, ?, ?)";
+    private static final String DELETE_BY_ID = "DELETE FROM customers WHERE id = ?";
+    private static final String UPDATE = "UPDATE customers SET customer_name = ? , customer_phone = ? WHERE id = ?";
 
     public CustomersRepository(DatabaseManager connector) {
         this.connector = connector;
