@@ -1,6 +1,7 @@
 package ua.goit.model.dao;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProjectSpecFormatDao {
 
@@ -41,12 +42,19 @@ public class ProjectSpecFormatDao {
         this.count = count;
     }
 
+    public static void printInfo(List<ProjectSpecFormatDao> list){
+        for(ProjectSpecFormatDao psf : list){
+            System.out.println("Project name: " + psf.getName());
+            System.out.println("Date of start: " + psf.getDate());
+            System.out.println("Count of developers: " + psf.getCount());
+            System.out.println("---------");
+        }
+    }
+
     @Override
     public String toString() {
-        return "ProjectSpecFormatDao{" +
-                "date=" + date +
-                ", name='" + name + '\'' +
-                ", count=" + count +
-                '}';
+        return "Date: " + date +
+                ", Project`s name: '" + name + '\'' +
+                ", Count of developers: " + count;
     }
 }

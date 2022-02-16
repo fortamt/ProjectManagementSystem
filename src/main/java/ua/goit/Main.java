@@ -4,6 +4,7 @@ import ua.goit.config.DatabaseManager;
 import ua.goit.config.PostgresHikariProvider;
 import ua.goit.config.PropertiesUtil;
 import ua.goit.Queries.SelectQueries;
+import ua.goit.model.dao.ProjectSpecFormatDao;
 
 public class Main {
     public static void main(String[] args){
@@ -23,7 +24,7 @@ public class Main {
 //
 //        System.out.println(selectQueries.listOfDevelopersBySkill("Middle"));    //разработчики по скилу
 
-        System.out.println(selectQueries.listInfOfProjects());
+        ProjectSpecFormatDao.printInfo(selectQueries.listInfOfProjects());
 
 
     }
