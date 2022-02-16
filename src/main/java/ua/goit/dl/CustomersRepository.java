@@ -86,7 +86,7 @@ public class CustomersRepository implements Repository<CustomersDao>{
         CustomersDao customersDao = null;
         while(resultSet.next()){
             customersDao = new CustomersDao();
-            customersDao.setCustomerId(resultSet.getInt("customer_id"));
+            customersDao.setCustomerId(resultSet.getInt("id"));
             customersDao.setCustomerName(resultSet.getString("customer_name"));
             customersDao.setCustomerPhone(resultSet.getString("customer_phone"));
         }

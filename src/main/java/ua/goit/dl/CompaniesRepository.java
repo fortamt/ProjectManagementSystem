@@ -84,7 +84,7 @@ public class CompaniesRepository implements Repository<CompaniesDao>{
         CompaniesDao companiesDao = null;
         while(resultSet.next()){
             companiesDao = new CompaniesDao();
-            companiesDao.setCompanyId(resultSet.getInt("company_id"));
+            companiesDao.setCompanyId(resultSet.getInt("id"));
             companiesDao.setCompanyName(resultSet.getString("company_name"));
             companiesDao.setCompanyAddress(resultSet.getString("company_address"));
         }
