@@ -1,4 +1,4 @@
-package ua.goit.config.Queries;
+package ua.goit.Queries;
 
 import ua.goit.config.DatabaseManager;
 import ua.goit.model.dao.ProjectSpecFormatDao;

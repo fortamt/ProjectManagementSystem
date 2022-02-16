@@ -3,7 +3,7 @@ package ua.goit;
 import ua.goit.config.DatabaseManager;
 import ua.goit.config.PostgresHikariProvider;
 import ua.goit.config.PropertiesUtil;
-import ua.goit.config.Queries.SelectQueries;
+import ua.goit.Queries.SelectQueries;
 
 public class Main {
     public static void main(String[] args){
