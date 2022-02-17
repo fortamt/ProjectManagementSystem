@@ -88,7 +88,7 @@ public class DevelopersRepository implements Repository<DevelopersDao>{
         DevelopersDao developersDao = null;
         while(resultSet.next()){
             developersDao = new DevelopersDao();
-            developersDao.setDeveloperId(resultSet.getInt("developer_id"));
+            developersDao.setDeveloperId(resultSet.getInt("id"));
             developersDao.setDeveloperName(resultSet.getString("developer_name"));
             developersDao.setDeveloperAge(resultSet.getInt("developer_age"));
             developersDao.setDeveloperSex(resultSet.getString("developer_sex"));

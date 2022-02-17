@@ -83,7 +83,7 @@ public class ProjectsRepository implements Repository<ProjectsDao>{
         ProjectsDao projectsDao = null;
         while(resultSet.next()){
             projectsDao = new ProjectsDao();
-            projectsDao.setProjectId(resultSet.getInt("project_id"));
+            projectsDao.setProjectId(resultSet.getInt("id"));
             projectsDao.setProjectName(resultSet.getString("project_id"));
             projectsDao.setProjectStartDate(resultSet.getDate("project_start_date"));
             projectsDao.setCost(resultSet.getInt("cost"));

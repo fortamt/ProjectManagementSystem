@@ -84,7 +84,7 @@ public class SkillsRepository implements Repository<SkillsDao>{
         SkillsDao skillsDao = null;
         while(resultSet.next()){
             skillsDao = new SkillsDao();
-            skillsDao.setSkillId(resultSet.getInt("skill_id"));
+            skillsDao.setSkillId(resultSet.getInt("id"));
             skillsDao.setLanguage(resultSet.getString("language"));
             skillsDao.setSkillLevel(resultSet.getString("skill_lvl"));
         }
